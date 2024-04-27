@@ -35,9 +35,6 @@ public class TranslateService {
 
     private static final String TRANSLATE_API_URL = "https://google-translate1.p.rapidapi.com/language/translate/v2";
     private static final String DETECT_API_URL = "https://google-translate1.p.rapidapi.com/language/translate/v2/detect";
-    // private static final String API_KEY = "f785ededa0msh2e742ca7199f16cp10f8a5jsn28319ff7a9f4";
-     private static final String API_KEY = "050bbf24bbmsh454a8e72f58614dp1d54cbjsn481e1df5f7aa";
-    // private static final String API_KEY = System.getenv("API_KEY");
     private static final String API_HOST = "google-translate1.p.rapidapi.com";
 
     @Autowired
@@ -52,7 +49,7 @@ public class TranslateService {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
             headers.setAccept(List.of(MediaType.APPLICATION_JSON));
-            headers.add("X-RapidAPI-Key", API_KEY);
+            headers.add("X-RapidAPI-Key", configProperties.api());
             headers.add("X-RapidAPI-Host", API_HOST);
 
             String formData = String.format("q=%s", URLEncoder.encode(text.getText(),
@@ -103,7 +100,7 @@ public class TranslateService {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
             headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-            headers.add("X-RapidAPI-Key", API_KEY);
+            headers.add("X-RapidAPI-Key", configProperties.api());
             headers.add("X-RapidAPI-Host", API_HOST);
 
             String formData = String.format("q=%s&target=%s&source=%s",
